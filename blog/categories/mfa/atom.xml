@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mfa | creativepsyco's Blog]]></title>
   <link href="http://creativepsyco.github.com/blog/categories/mfa/atom.xml" rel="self"/>
   <link href="http://creativepsyco.github.com/"/>
-  <updated>2012-12-01T21:59:14+08:00</updated>
+  <updated>2012-12-11T21:01:24+05:30</updated>
   <id>http://creativepsyco.github.com/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[A Web Service for Multi-Factor Authentication]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication/"/>
-    <updated>2012-12-01T21:56:00+08:00</updated>
+    <updated>2012-12-01T21:56:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication</id>
     <content type="html"><![CDATA[<p><em>One of the projects done by me this semester was making Multi-Factor Authentication available for use by other websites. This required hosting our MFA web service over the internet.</em></p>
 ]]></content>

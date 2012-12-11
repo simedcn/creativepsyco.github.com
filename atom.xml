@@ -4,7 +4,7 @@
   <title><![CDATA[creativepsyco's Blog]]></title>
   <link href="http://creativepsyco.github.com/atom.xml" rel="self"/>
   <link href="http://creativepsyco.github.com/"/>
-  <updated>2012-12-01T21:59:14+08:00</updated>
+  <updated>2012-12-11T21:01:24+05:30</updated>
   <id>http://creativepsyco.github.com/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[A Web Service for Multi-Factor Authentication]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication/"/>
-    <updated>2012-12-01T21:56:00+08:00</updated>
+    <updated>2012-12-01T21:56:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication</id>
     <content type="html"><![CDATA[<p><em>One of the projects done by me this semester was making Multi-Factor Authentication available for use by other websites. This required hosting our MFA web service over the internet.</em></p>
 ]]></content>
@@ -25,7 +25,7 @@
   <entry>
     <title type="html"><![CDATA[An App called tidicity - Part 1]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/11/02/an-app-called-tidicity/"/>
-    <updated>2012-11-02T01:49:00+08:00</updated>
+    <updated>2012-11-02T01:49:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/11/02/an-app-called-tidicity</id>
     <content type="html"><![CDATA[<p>Do you think there is a concept of smart cities?</p>
 
@@ -48,7 +48,7 @@
   <entry>
     <title type="html"><![CDATA[New Technologies Galore]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/11/02/new-technologies-galore/"/>
-    <updated>2012-11-02T01:12:00+08:00</updated>
+    <updated>2012-11-02T01:12:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/11/02/new-technologies-galore</id>
     <content type="html"><![CDATA[<p><em>Most of the stuff is still under production, more details later</em></p>
 
@@ -130,7 +130,7 @@
   <entry>
     <title type="html"><![CDATA[Solving Cross Origin Resource Sharing policies Sinatra and BackboneJS]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/"/>
-    <updated>2012-10-22T22:57:00+08:00</updated>
+    <updated>2012-10-22T22:57:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs</id>
     <content type="html"><![CDATA[<p>Admit it. There are so many times you wish that the localhost-ed version of the application that you are developing in BacboneJS just works. But it doesn&#8217;t. And there is only one reason why it doesn&#8217;t work.</p>
 
@@ -156,7 +156,7 @@
   <entry>
     <title type="html"><![CDATA[Node JS Script to run a web server for Backbone etc]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc/"/>
-    <updated>2012-10-22T00:18:00+08:00</updated>
+    <updated>2012-10-22T00:18:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc</id>
     <content type="html"><![CDATA[<h2>The Problem</h2>
 
@@ -195,7 +195,7 @@
   <entry>
     <title type="html"><![CDATA[Page Control Javascript]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/21/page-control-javascript/"/>
-    <updated>2012-10-21T23:59:00+08:00</updated>
+    <updated>2012-10-21T23:59:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/21/page-control-javascript</id>
     <content type="html"><![CDATA[<h2>The Problem</h2>
 
@@ -216,7 +216,7 @@
   <entry>
     <title type="html"><![CDATA[Doing a Wizard Like Flow in Backbone.js and Jquery Mobile]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile/"/>
-    <updated>2012-10-21T23:26:00+08:00</updated>
+    <updated>2012-10-21T23:26:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile</id>
     <content type="html"><![CDATA[<p>One of the things that new app developers do especially mobile ones, is that they give a step like flow to their users to enter data in a much more streamlined process by breaking it down into a number of steps and then load each one at a different time.</p>
 
@@ -233,7 +233,7 @@
   <entry>
     <title type="html"><![CDATA[CS3235]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/12/cs3235/"/>
-    <updated>2012-10-12T11:07:00+08:00</updated>
+    <updated>2012-10-12T11:07:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/12/cs3235</id>
     <content type="html"><![CDATA[<p>Hi -</p>
 ]]></content>
@@ -242,7 +242,7 @@
   <entry>
     <title type="html"><![CDATA[hello world]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/12/hello-world/"/>
-    <updated>2012-10-12T08:11:00+08:00</updated>
+    <updated>2012-10-12T08:11:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/12/hello-world</id>
     <content type="html"><![CDATA[<p><em>Every post starts with a Hello World. Every code you write starts with Hello World.</em></p>
 
@@ -260,48 +260,16 @@
   <entry>
     <title type="html"><![CDATA[Zombie Ninjas Attack: A survivor's retrospective]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective/"/>
-    <updated>2012-10-12T07:46:00+08:00</updated>
+    <updated>2012-10-12T07:46:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[The problem with Pingdom]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/07/22/the-problem-with-pingdom/"/>
-    <updated>2012-07-22T19:13:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/07/22/the-problem-with-pingdom</id>
-    <content type="html"><![CDATA[
-
-<figure class='code'><figcaption><span>Time to be Awesome - awesome.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Awesome!&quot;</span> <span class="k">unless</span> <span class="n">lame</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.pingdom.com%20Pingdom">The problem with pingdom.</a></p>
-
-<p>My money&#8217;s in that office, right? If she start giving me some bullshit about it ain&#8217;t there, and we got to go someplace else and get it, I&#8217;m gonna shoot you in the head then and there. Then I&#8217;m gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too. Hey, look at me when I&#8217;m talking to you, motherfucker. You listen: we go in there, and that nigga Winston or anybody else is in there, you the first motherfucker to get shot. You understand?</p>
-
-<blockquote><p>Blockquote is what goes
-inside this block here
-would you believe that
-bullshit?</p></blockquote>
-
-<p>Well, the way they make shows is, they make one show. That show&#8217;s called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they&#8217;re going to make more shows. Some pilots get picked and become television programs. Some don&#8217;t, become nothing. She starred in one of the ones that became nothing.</p>
-
-<p>The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother&#8217;s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee.</p>
-
-<p>Your bones don&#8217;t break, mine do. That&#8217;s clear. Your cells react to bacteria and viruses differently than mine. You don&#8217;t get sick, I do. That&#8217;s also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We&#8217;re on the same curve, just on opposite ends.</p>
-
-<p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&#8217;s what you see at a toy store. And you must think you&#8217;re in a toy store, because you&#8217;re here shopping for an infant named Jeb.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Intro]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/07/22/intro/"/>
-    <updated>2012-07-22T08:23:00+08:00</updated>
+    <updated>2012-07-22T08:23:00+05:30</updated>
     <id>http://creativepsyco.github.com/blog/2012/07/22/intro</id>
     <content type="html"><![CDATA[<p>Testing!</p>
 
