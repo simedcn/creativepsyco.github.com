@@ -4,7 +4,7 @@
   <title><![CDATA[creativepsyco's Blog]]></title>
   <link href="http://creativepsyco.github.com/atom.xml" rel="self"/>
   <link href="http://creativepsyco.github.com/"/>
-  <updated>2013-01-11T00:40:10+08:00</updated>
+  <updated>2013-01-11T00:54:49+08:00</updated>
   <id>http://creativepsyco.github.com/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
@@ -149,7 +149,7 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>For more information refer to <a href="https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions">Mozilla Documentation on Build</a></p>
 ]]></content>
   </entry>
   
