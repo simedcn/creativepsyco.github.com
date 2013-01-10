@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Hacks - creativepsyco's Blog</title>
+  <title>Creating an API with .NET MVC4 - creativepsyco's Blog</title>
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="Category: Hacks">
+  <meta name="description" content="Gist Recently while working on a vacation assigment I had to create an API in ASP .NET MVC. This was in order to create a booking system on top of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://creativepsyco.github.comblog/categories/hacks/">
+  <link rel="canonical" href="http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,36 +76,115 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Hacks</h1>
+    
+      <h1 class="entry-title">Creating an API With .NET MVC4</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-10T22:26:00+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2>Gist</h2>
 
-  
-  <h2>2012</h2>
+<p><em>Recently while working on a vacation assigment I had to create an API in ASP .NET MVC. This was in order to create a booking system on top of the Google Calendar Event storage. Google provides 50000 calls per day free of chrage for the API so we thought this might work. But it also required some form of authentication to prevent the API facade from being misused.</em></p>
 
-<article>
-  
-<h1><a href="/blog/2012/11/02/an-app-called-tidicity/">An App called tidicity - Part 1</a></h1>
-<time datetime="2012-11-02T01:49:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>02</span> <span class='year'>2012</span></time>
+<h2>OpenId</h2>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/backbonejs/'>BackboneJS</a>, <a class='category' href='/blog/categories/hacks/'>Hacks</a></span>
-</footer>
+<p>Well when you can&#8217;t store the authentication result you need to think of some third party based authentication mechanism and OpenId is one those means. Most of the modern email and other service providers such as Dropbox etc provide openid schemes which can be leveraged to get basic userinfo and proceed to do something in web application.</p>
 
+<h2>Nancy</h2>
 
-</article>
+<p>Nancy is a NuGet package which mimics Sinatra. It allows creation of Http GET, POST, DELETE requests as mere functions with much ease. However it does not supports sessions and hence was found to be very hard to use in some of the places. For most operations, however, Nancy is a fantastic option.</p>
 
+<h2>ASP .NET MVC</h2>
+
+<p>// Todo</p>
+
+<h2>Authentication in MVC .NET</h2>
+
+<p>// Todo</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Mohit Kanwal</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-10T22:26:00+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/-net/'>.NET</a>, <a class='category' href='/blog/categories/asp/'>ASP</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/11/a-home-called-india/" title="Previous Post: A home called India">&laquo; A home called India</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -206,7 +285,10 @@
       var disqus_shortname = 'creativepyscoblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/';
+        var disqus_url = 'http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

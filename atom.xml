@@ -4,7 +4,7 @@
   <title><![CDATA[creativepsyco's Blog]]></title>
   <link href="http://creativepsyco.github.com/atom.xml" rel="self"/>
   <link href="http://creativepsyco.github.com/"/>
-  <updated>2012-12-11T23:20:19+05:30</updated>
+  <updated>2013-01-10T22:43:32+08:00</updated>
   <id>http://creativepsyco.github.com/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
@@ -14,9 +14,36 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Creating an API with .NET MVC4]]></title>
+    <link href="http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/"/>
+    <updated>2013-01-10T22:26:00+08:00</updated>
+    <id>http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4</id>
+    <content type="html"><![CDATA[<h2>Gist</h2>
+
+<p><em>Recently while working on a vacation assigment I had to create an API in ASP .NET MVC. This was in order to create a booking system on top of the Google Calendar Event storage. Google provides 50000 calls per day free of chrage for the API so we thought this might work. But it also required some form of authentication to prevent the API facade from being misused.</em></p>
+
+<h2>OpenId</h2>
+
+<p>Well when you can&#8217;t store the authentication result you need to think of some third party based authentication mechanism and OpenId is one those means. Most of the modern email and other service providers such as Dropbox etc provide openid schemes which can be leveraged to get basic userinfo and proceed to do something in web application.</p>
+
+<h2>Nancy</h2>
+
+<p>Nancy is a NuGet package which mimics Sinatra. It allows creation of Http GET, POST, DELETE requests as mere functions with much ease. However it does not supports sessions and hence was found to be very hard to use in some of the places. For most operations, however, Nancy is a fantastic option.</p>
+
+<h2>ASP .NET MVC</h2>
+
+<p>// Todo</p>
+
+<h2>Authentication in MVC .NET</h2>
+
+<p>// Todo</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[A home called India]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/12/11/a-home-called-india/"/>
-    <updated>2012-12-11T22:36:00+05:30</updated>
+    <updated>2012-12-11T22:36:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/12/11/a-home-called-india</id>
     <content type="html"><![CDATA[<p><em>And now some random philosphical thoughts on what I think of India: my home</em></p>
 
@@ -55,11 +82,13 @@
   <entry>
     <title type="html"><![CDATA[Design Patterns in Javascript: Widget Based Design]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/"/>
-    <updated>2012-12-11T22:26:00+05:30</updated>
+    <updated>2012-12-11T22:26:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design</id>
     <content type="html"><![CDATA[<p><em>One of the most important things people learn after doing/learning a new language or as-these-days a framework is to be able to apply one of the most sought after industrial practices in the form of design patterns.</em></p>
 
 <p>The current semester I had a course involving hefty use of Design Patterns. The course CS3213-Software Design revolved in using design patterns and applying them to the world of software in extreme detail, which I never in my dreams would have imagined.</p>
+
+<p>This is just great.</p>
 
 <h2>The Course</h2>
 
@@ -82,7 +111,7 @@
   <entry>
     <title type="html"><![CDATA[A Web Service for Multi-Factor Authentication]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication/"/>
-    <updated>2012-12-01T21:56:00+05:30</updated>
+    <updated>2012-12-01T21:56:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication</id>
     <content type="html"><![CDATA[<p><em>One of the projects done by me this semester was making Multi-Factor Authentication available for use by other websites. This required hosting our MFA web service over the internet.</em></p>
 ]]></content>
@@ -91,7 +120,7 @@
   <entry>
     <title type="html"><![CDATA[An App called tidicity - Part 1]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/11/02/an-app-called-tidicity/"/>
-    <updated>2012-11-02T01:49:00+05:30</updated>
+    <updated>2012-11-02T01:49:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/11/02/an-app-called-tidicity</id>
     <content type="html"><![CDATA[<p>Do you think there is a concept of smart cities?</p>
 
@@ -114,7 +143,7 @@
   <entry>
     <title type="html"><![CDATA[New Technologies Galore]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/11/02/new-technologies-galore/"/>
-    <updated>2012-11-02T01:12:00+05:30</updated>
+    <updated>2012-11-02T01:12:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/11/02/new-technologies-galore</id>
     <content type="html"><![CDATA[<p><em>Most of the stuff is still under production, more details later</em></p>
 
@@ -196,7 +225,7 @@
   <entry>
     <title type="html"><![CDATA[Solving Cross Origin Resource Sharing policies Sinatra and BackboneJS]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/"/>
-    <updated>2012-10-22T22:57:00+05:30</updated>
+    <updated>2012-10-22T22:57:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs</id>
     <content type="html"><![CDATA[<p>Admit it. There are so many times you wish that the localhost-ed version of the application that you are developing in BacboneJS just works. But it doesn&#8217;t. And there is only one reason why it doesn&#8217;t work.</p>
 
@@ -222,7 +251,7 @@
   <entry>
     <title type="html"><![CDATA[Node JS Script to run a web server for Backbone etc]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc/"/>
-    <updated>2012-10-22T00:18:00+05:30</updated>
+    <updated>2012-10-22T00:18:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc</id>
     <content type="html"><![CDATA[<h2>The Problem</h2>
 
@@ -261,7 +290,7 @@
   <entry>
     <title type="html"><![CDATA[Page Control Javascript]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/21/page-control-javascript/"/>
-    <updated>2012-10-21T23:59:00+05:30</updated>
+    <updated>2012-10-21T23:59:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/21/page-control-javascript</id>
     <content type="html"><![CDATA[<h2>The Problem</h2>
 
@@ -282,7 +311,7 @@
   <entry>
     <title type="html"><![CDATA[Doing a Wizard Like Flow in Backbone.js and Jquery Mobile]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile/"/>
-    <updated>2012-10-21T23:26:00+05:30</updated>
+    <updated>2012-10-21T23:26:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile</id>
     <content type="html"><![CDATA[<p>One of the things that new app developers do especially mobile ones, is that they give a step like flow to their users to enter data in a much more streamlined process by breaking it down into a number of steps and then load each one at a different time.</p>
 
@@ -299,7 +328,7 @@
   <entry>
     <title type="html"><![CDATA[CS3235]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/12/cs3235/"/>
-    <updated>2012-10-12T11:07:00+05:30</updated>
+    <updated>2012-10-12T11:07:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/12/cs3235</id>
     <content type="html"><![CDATA[<p>Hi -</p>
 ]]></content>
@@ -308,7 +337,7 @@
   <entry>
     <title type="html"><![CDATA[hello world]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/12/hello-world/"/>
-    <updated>2012-10-12T08:11:00+05:30</updated>
+    <updated>2012-10-12T08:11:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/12/hello-world</id>
     <content type="html"><![CDATA[<p><em>Every post starts with a Hello World. Every code you write starts with Hello World.</em></p>
 
@@ -326,28 +355,9 @@
   <entry>
     <title type="html"><![CDATA[Zombie Ninjas Attack: A survivor's retrospective]]></title>
     <link href="http://creativepsyco.github.com/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective/"/>
-    <updated>2012-10-12T07:46:00+05:30</updated>
+    <updated>2012-10-12T07:46:00+08:00</updated>
     <id>http://creativepsyco.github.com/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective</id>
     <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Intro]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/07/22/intro/"/>
-    <updated>2012-07-22T08:23:00+05:30</updated>
-    <id>http://creativepsyco.github.com/blog/2012/07/22/intro</id>
-    <content type="html"><![CDATA[<p>Testing!</p>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin, massa eu vestibulum laoreet, nibh ante vulputate lorem, ac lobortis ante tellus eu mi. Duis sem nisi, luctus at feugiat eget, fringilla ut tellus. Nam a molestie justo. Sed pulvinar est vitae tellus semper tincidunt. Fusce euismod luctus lacus nec placerat. Mauris rutrum scelerisque nulla ut tempor. Nunc porttitor posuere mi, aliquet vehicula lorem feugiat in. Ut ut fermentum risus. Aliquam tincidunt ultricies ante sit amet bibendum. Cras nec sapien odio. Duis posuere congue sem, at congue massa faucibus at.</p>
-
-<p>Integer ut sapien eget nisl auctor faucibus ut fermentum arcu. Nunc rutrum urna non risus congue et tristique felis eleifend. Maecenas blandit est eu mauris aliquam aliquet. Quisque porttitor enim eget risus blandit in mollis orci eleifend. Nam malesuada nulla sed lacus elementum placerat accumsan arcu rhoncus. Phasellus feugiat cursus turpis nec facilisis. Duis eget metus arcu, eget commodo velit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer cursus vulputate enim, vel gravida velit faucibus et. Ut a urna vitae tellus cursus rhoncus. Maecenas at odio eget quam cursus elementum. Aliquam vitae eros quis tellus laoreet accumsan sed id lorem. Suspendisse et rutrum leo. Integer scelerisque vestibulum adipiscing. In posuere, libero ac accumsan suscipit, nulla ligula gravida erat, ut tempor odio erat nec sem. Quisque justo ipsum, adipiscing volutpat varius vitae, blandit eget nisi.</p>
-
-<p>Nullam adipiscing neque ac lacus commodo vitae imperdiet dui sollicitudin. Ut ac nunc augue. Nam at sem ut quam commodo aliquet vitae vitae dui. Vivamus scelerisque felis eget dolor cursus feugiat. Phasellus at dui sed lectus scelerisque pretium. Etiam nec massa ut justo vestibulum fringilla ac vitae urna. Morbi tortor erat, tempus sed consectetur at, elementum nec eros. Vivamus mattis arcu a sapien semper non lacinia eros pretium.</p>
-
-<p>Proin ut hendrerit arcu. Maecenas ullamcorper tristique magna vel mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam tincidunt euismod viverra. In sit amet neque turpis. Suspendisse ac sapien mi, id blandit purus. Ut tortor turpis, rutrum ac tempor at, accumsan sit amet erat. Etiam ultricies eleifend dolor, eget tempus justo tristique vitae. In hac habitasse platea dictumst. Aliquam eu enim neque.</p>
-
-<p>Morbi massa lorem, viverra non dictum at, malesuada vel nibh. Nam fermentum lobortis varius. Sed a nulla lacus, quis posuere risus. Nunc id urna libero, quis rutrum mi. In gravida felis urna. Praesent nec dolor ac urna tempor fermentum. Curabitur rutrum arcu et lorem volutpat viverra.</p>
 ]]></content>
   </entry>
   
