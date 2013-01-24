@@ -9,7 +9,7 @@
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="This is a reference of some of the very important mozilla commands that I use in daily Terminal Life Requirements Set up Hg, Autoconf using Brew. &hellip;">
+  <meta name="description" content="Here&#8217;s how to install python on your web server :) Log in using SSH access This process may change from different kind of hosts to different &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,231 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/01/24/django-fun/">Django Fun</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-24T22:29:00+08:00" pubdate data-updated="true">Jan 24<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/24/django-fun/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here&#8217;s how to install python on your web server :)</p>
+
+<h3>Log in using SSH access</h3>
+
+<p>This process may change from different kind of hosts to different machines so find out first.</p>
+
+<h3>Install Python 2.7.2</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/python
+</span><span class='line'>cd ~/python
+</span><span class='line'>wget http://www.python.org/ftp/python/2.7.2/Python-2.7.2.tgz
+</span><span class='line'>tar zxfv Python-2.7.2.tgz
+</span><span class='line'>rm -rf Python-2.7.2.tgz
+</span><span class='line'>find ~/python -type d | xargs chmod 0755
+</span><span class='line'>cd Python-2.7.2
+</span><span class='line'>./configure --prefix=$HOME/python
+</span><span class='line'>make
+</span><span class='line'>make install
+</span><span class='line'>cd ..
+</span><span class='line'>rm -rf Python-2.7.2</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Modify ~/.bashrc</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vim ~/.bashrc # Press i and enter the following:
+</span><span class='line'>export PATH=$HOME/python/bin:$PATH # press &lt;escape&gt;:wq&lt;enter&gt;
+</span><span class='line'>source ~/.bashrc # Whenever you want to work using Python 2.7 in the
+</span><span class='line'>                 # console you will need to enter this</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Test your Python install</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python -V # This should output "Python 2.7.2"</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install setuptools</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz
+</span><span class='line'>tar xzvf setuptools-0.6c11.tar.gz
+</span><span class='line'>rm setuptools-0.6c11.tar.gz
+</span><span class='line'>cd setuptools-0.6c11
+</span><span class='line'>python setup.py install
+</span><span class='line'>cd ..
+</span><span class='line'>rm -rf setuptools-0.6c11</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install pip</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://pypi.python.org/packages/source/p/pip/pip-1.2.1.tar.gz
+</span><span class='line'>tar xzvf pip-1.2.1.tar.gz
+</span><span class='line'>rm pip-1.2.1.tar.gz
+</span><span class='line'>cd pip-1.2.1
+</span><span class='line'>python setup.py install
+</span><span class='line'>cd ..
+</span><span class='line'>rm -rf pip-1.2.1</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install Django, flup and MySQL Python Module</h3>
+
+<p>Now that pip is installed this is easy part.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pip install Django
+</span><span class='line'>pip install flup
+</span><span class='line'>pip install MySQL-python</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Create .htaccess</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/public_html/mysite # where mysite is the root folder of your site
+</span><span class='line'>vim .htaccess # Press i then enter the following:
+</span><span class='line'>AddHandler fcgid-script .fcgi
+</span><span class='line'>RewriteEngine On
+</span><span class='line'>RewriteCond %{REQUEST_FILENAME} !-f
+</span><span class='line'>RewriteRule ^(.*)$ mysite.fcgi/$1 [QSA,L] # Press wq</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Configure Your Website</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/django-projects
+</span><span class='line'>cd ~/django-projects
+</span><span class='line'>django-admin.py startproject myproject # I use the same name as mysite
+</span><span class='line'>                                       # without any periods
+</span><span class='line'>cd ~/public_html/mysite
+</span><span class='line'>vim mysite.fcgi # Press i then enter the following:
+</span><span class='line'>#!/homeX/your_username/python/bin/python
+</span><span class='line'>import sys, os
+</span><span class='line'>
+</span><span class='line'># Where /home/your_username is the path to your home directory
+</span><span class='line'>sys.path.insert(0, "/home/your_username/python")
+</span><span class='line'>sys.path.insert(13, "/home/your_username/django-projects/myproject")
+</span><span class='line'>
+</span><span class='line'>os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
+</span><span class='line'>from django.core.servers.fastcgi import runfastcgi
+</span><span class='line'>runfastcgi(method="threaded", daemonize="false") # Press &lt;escape&gt;wq&lt;enter&gt;
+</span><span class='line'>chmod 0755 mysite.fcgi</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h3>Test your configuration</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python mysite.fcgi
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Fix any errors and run the command again. When you have an HTML page
+</span><span class='line'># returned your Django install is complete. You should be able to go to your
+</span><span class='line'># sites URL and view the Django welcome page.</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>That’s everything</p>
+
+<p>Now you can get to work and create some real Django pages.</p>
+
+<h3>A Few Tips</h3>
+
+<p>Remember to install every python and django package using pip – that way they will be available to your django app.
+Keep in mind that every Django command like syncdb, collectstatic  etc. should be run using the correct version of Python. This means using source ~/.bashrc every time you log into your SSH client e.g.
+source ~/.bashrc
+python manage.py syncdb
+python manage.py shell
+etc.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -779,53 +1004,6 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/10/21/page-control-javascript/">Page Control Javascript</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-21T23:59:00+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2012</time>
-        
-         | <a href="/blog/2012/10/21/page-control-javascript/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>The Problem</h2>
-
-<p>Sometimes having different pages of content causes us to think about loading them in a page like fashion. Thus there needs to be a <em>mediator</em> that can take care of the loading based on a few configuration variables.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/21/page-control-javascript/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -841,6 +1019,10 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/24/django-fun/">Django Fun</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/11/essential-mozilla-command-line/">Essential Mozilla Command Line</a>
       </li>
     
@@ -854,10 +1036,6 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
     
       <li class="post">
         <a href="/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/">Design Patterns in Javascript: Widget Based Design</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/01/a-web-service-for-multi-factor-authentication/">A Web Service for Multi-Factor Authentication</a>
       </li>
     
   </ul>
