@@ -5,11 +5,34 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>hello world - creativepsyco's Blog</title>
+  <title>Django and Travis - creativepsyco's Blog</title>
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="Every post starts with a Hello World. Every code you write starts with Hello World. Then perhaps this should also. I have moved my blog to Github now &hellip;">
+  <meta name="description" content="A sample .travis file to allow you to run and test on the Travis CI. 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+language: python
+python &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +41,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://creativepsyco.github.com/blog/2012/10/12/hello-world/">
+  <link rel="canonical" href="http://creativepsyco.github.com/blog/2013/01/27/django-and-travis/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -89,7 +112,7 @@
   <header>
     
       
-        <h1 class="entry-title">Hello World</h1>
+        <h1 class="entry-title">Django and Travis</h1>
       
     
     
@@ -106,7 +129,7 @@
   
 
 
-<time datetime="2012-10-12T08:11:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2012</time>
+<time datetime="2013-01-27T03:42:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -115,16 +138,56 @@
   </header>
 
 
-<div class="entry-content"><p><em>Every post starts with a Hello World. Every code you write starts with Hello World.</em></p>
+<div class="entry-content"><p>A sample <code>.travis</code> file to allow you to run and test on the <a href="http://travis-ci.org">Travis CI</a>.</p>
 
-<p><em>Then perhaps this should also.</em></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">python</span>
+</span><span class='line'><span class="l-Scalar-Plain">python</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="c1"># - &quot;2.6&quot;</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="s">&quot;2.7&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">services</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql</span>
+</span><span class='line'><span class="l-Scalar-Plain">env</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="c1"># - DJANGO=1.2.7</span>
+</span><span class='line'>  <span class="c1"># - DJANGO=1.3.1</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">DJANGO=1.4.3 DJANGO_SETTINGS_MODULE=&quot;mysite.travis_settings&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">install</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pip install -q Django==$DJANGO --use-mirrors</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pip install pep8 --use-mirrors</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pip install mysql-python --use-mirrors</span>
+</span><span class='line'>  <span class="c1"># - pip install https://github.com/dcramer/pyflakes/tarball/master</span>
+</span><span class='line'>  <span class="c1"># - pip install -q -e . --use-mirrors</span>
+</span><span class='line'><span class="l-Scalar-Plain">before_script</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="c1">#   - &quot;pep8 --exclude=migrations --ignore=E501,E225 src&quot;</span>
+</span><span class='line'><span class="c1">#   - pyflakes -x W src</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">mysql -e &#39;create database mysite_db;&#39;</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">python manage.py syncdb --noinput</span>
+</span><span class='line'><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">python manage.py test</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>I have moved my blog to Github now with the intention of using more and more of Git and ruby for use in my daily life. I can&#8217;t comment how much I am going to miss in this or how much I am going to gain, it is just a start and hopefully a start of something really new and tidy.</p>
 
-<p>I am using Jekyll to power up the blog. It looks awesome and from the amount of configs needed to get it running I must it does not have that much of a turnaround time. Let&#8217;s see how far I go with this.</p>
-
-<p>And what&#8217;s more this
-&#8211;mohit</p>
+<p>Enjoy :)</p>
 </div>
 
 
@@ -147,15 +210,21 @@
   
 
 
-<time datetime="2012-10-12T08:11:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2012</time>
+<time datetime="2013-01-27T03:42:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/django/'>Django</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.com/blog/2012/10/12/hello-world/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.com/blog/2012/10/12/hello-world/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.com/blog/2013/01/27/django-and-travis/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.com/blog/2013/01/27/django-and-travis/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -168,10 +237,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective/" title="Previous Post: Zombie Ninjas Attack: A survivor's retrospective">&laquo; Zombie Ninjas Attack: A survivor's retrospective</a>
+        <a class="basic-alignment left articlenav" href="/blog/2013/01/24/django-fun/" title="Previous Post: Django Fun">&laquo; Django Fun</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2012/10/12/cs3235/" title="Next Post: CS3235">CS3235 &raquo;</a>
       
     </p>
   </footer>
@@ -283,8 +350,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://creativepsyco.github.com/blog/2012/10/12/hello-world/';
-        var disqus_url = 'http://creativepsyco.github.com/blog/2012/10/12/hello-world/';
+        var disqus_identifier = 'http://creativepsyco.github.com/blog/2013/01/27/django-and-travis/';
+        var disqus_url = 'http://creativepsyco.github.com/blog/2013/01/27/django-and-travis/';
         var disqus_script = 'embed.js';
       
     (function () {
