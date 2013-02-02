@@ -9,7 +9,7 @@
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="A sample .travis file to allow you to run and test on the Travis CI. 1
+  <meta name="description" content="Here is an example of how to do a dynamic form in Django. I am loving this framework, it&#8217;s so simple 1
 2
 3
 4
@@ -25,14 +25,7 @@
 14
 15
 16
-17
-18
-19
-20
-21
-22
-language: python
-python &hellip;">
+17 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +101,91 @@ python &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/02/02/django-dynamic-forms/">Django Dynamic Forms</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-02T20:33:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2013</time>
+        
+         | <a href="/blog/2013/02/02/django-dynamic-forms/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here is an example of how to do a dynamic form in Django. I am loving this framework, it&#8217;s so simple</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">ServiceStartForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">serviceList</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Service</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">serviceList</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">b</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">aService</span> <span class="ow">in</span> <span class="n">serviceList</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">b</span><span class="p">[</span><span class="n">aService</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">aService</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;Within the form, &quot;</span><span class="p">,</span> <span class="n">serviceList</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">serviceChoice</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">())</span>
+</span><span class='line'>    <span class="n">input_directory</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">output_directory</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">(</span><span class="n">ServiceStartForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">serviceList</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Service</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">b</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">aService</span> <span class="ow">in</span> <span class="n">serviceList</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">b</span><span class="p">[</span><span class="n">aService</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">aService</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>        <span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s">&quot;serviceChoice&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="n">c</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Enjoy :)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -989,63 +1067,6 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/">Solving Cross Origin Resource Sharing Policies Sinatra and BackboneJS</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-22T22:57:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Admit it. There are so many times you wish that the localhost-ed version of the application that you are developing in BacboneJS just works. But it doesn&#8217;t. And there is only one reason why it doesn&#8217;t work.</p>
-
-<h2>Cross Origin Resource Sharing</h2>
-
-<p>Yeah, the big culprit is CORS. And here is how you circumvent it. This snippet assumes you are using Sinatra for deploying your Rails API.</p>
-
-<h2>The Solution</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">options</span> <span class="s1">&#39;/*&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">response</span><span class="o">[</span><span class="s2">&quot;Access-Control-Allow-Headers&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;origin, x-requested-with, content-type&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This snippet will add a header to the response that will allow cross-origin javascript coming specifically from localhost to be able to call the server and get a response.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1061,6 +1082,10 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/02/django-dynamic-forms/">Django Dynamic Forms</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/django-and-travis/">Django and Travis</a>
       </li>
     
@@ -1074,10 +1099,6 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
     
       <li class="post">
         <a href="/blog/2013/01/10/creating-an-api-with-net-mvc4/">Creating an API with .NET MVC4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/11/a-home-called-india/">A home called India</a>
       </li>
     
   </ul>

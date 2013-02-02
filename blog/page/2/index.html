@@ -9,7 +9,7 @@
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="The Problem Sometimes we find ourselves wanting to be able to host a webserver to test out some HTML or javascript functionality. For example when &hellip;">
+  <meta name="description" content="Admit it. There are so many times you wish that the localhost-ed version of the application that you are developing in BacboneJS just works. But it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/">Solving Cross Origin Resource Sharing Policies Sinatra and BackboneJS</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-22T22:57:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time>
+        
+         | <a href="/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Admit it. There are so many times you wish that the localhost-ed version of the application that you are developing in BacboneJS just works. But it doesn&#8217;t. And there is only one reason why it doesn&#8217;t work.</p>
+
+<h2>Cross Origin Resource Sharing</h2>
+
+<p>Yeah, the big culprit is CORS. And here is how you circumvent it. This snippet assumes you are using Sinatra for deploying your Rails API.</p>
+
+<h2>The Solution</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">options</span> <span class="s1">&#39;/*&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">response</span><span class="o">[</span><span class="s2">&quot;Access-Control-Allow-Headers&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;origin, x-requested-with, content-type&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This snippet will add a header to the response that will allow cross-origin javascript coming specifically from localhost to be able to call the server and get a response.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -392,6 +449,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/02/django-dynamic-forms/">Django Dynamic Forms</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/django-and-travis/">Django and Travis</a>
       </li>
     
@@ -405,10 +466,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/10/creating-an-api-with-net-mvc4/">Creating an API with .NET MVC4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/11/a-home-called-india/">A home called India</a>
       </li>
     
   </ul>

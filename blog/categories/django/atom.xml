@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Django | creativepsyco's Blog]]></title>
   <link href="http://creativepsyco.github.com/blog/categories/django/atom.xml" rel="self"/>
   <link href="http://creativepsyco.github.com/"/>
-  <updated>2013-02-02T17:33:09+08:00</updated>
+  <updated>2013-02-02T21:46:03+08:00</updated>
   <id>http://creativepsyco.github.com/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django Dynamic Forms]]></title>
+    <link href="http://creativepsyco.github.com/blog/2013/02/02/django-dynamic-forms/"/>
+    <updated>2013-02-02T20:33:00+08:00</updated>
+    <id>http://creativepsyco.github.com/blog/2013/02/02/django-dynamic-forms</id>
+    <content type="html"><![CDATA[<p>Here is an example of how to do a dynamic form in Django. I am loving this framework, it's so simple</p>
+
+<p>```python
+class ServiceStartForm(forms.Form):</p>
+
+<pre><code>serviceList = service.models.Service.objects.all()
+print serviceList.count()
+b = {}
+for aService in serviceList:
+    b[aService.id] = aService.name
+c = b.items()
+print "Within the form, ", serviceList.count()
+serviceChoice = forms.ChoiceField(choices=c, widget=forms.Select())
+input_directory = forms.CharField(max_length=200)
+output_directory = forms.CharField(max_length=200)
+
+def __init__(self, *args, **kwargs):
+    super(ServiceStartForm, self).__init__(*args, **kwargs)
+    serviceList = service.models.Service.objects.all()
+    b = {}
+    for aService in serviceList:
+        b[aService.id] = aService.name
+    c = b.items()
+    self.fields["serviceChoice"].choices = c
+</code></pre>
+
+<p>```</p>
+
+<p>Enjoy :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Django and Travis]]></title>
