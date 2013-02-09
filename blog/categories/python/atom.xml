@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | creativepsyco's Blog]]></title>
   <link href="http://creativepsyco.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://creativepsyco.github.com/"/>
-  <updated>2013-02-09T19:39:15+08:00</updated>
+  <updated>2013-02-09T19:51:15+08:00</updated>
   <id>http://creativepsyco.github.com/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>In my current Final Year Project (FYP) for my undergraduate degree I needed to spawn processes and be able to store their state in the memory so that they can be started/re-started or stopped. I had previously gone about doing the same kind of operation in Java with a Singleton <code>ProcessManager</code> Class so I was pretty sure that such a pattern would exist in Python as well. Turns out, it is a <a href="http://lucumr.pocoo.org/2009/7/24/singletons-and-their-problems-in-python/">bad practice</a> to do so.</p>
 
 <p>Anyways, I could not figure out a better way to do this, so I stuck with Singletons. Moreover it got me the job done.</p>
+
+<!--more-->
+
 
 <p>Here is how the final product looks like:
 <div><script src='https://gist.github.com/4744901.js?file='></script>
