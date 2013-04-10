@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[creativepsyco's Blog]]></title>
-  <link href="http://creativepsyco.github.com/atom.xml" rel="self"/>
-  <link href="http://creativepsyco.github.com/"/>
-  <updated>2013-02-09T19:51:15+08:00</updated>
-  <id>http://creativepsyco.github.com/</id>
+  <link href="http://creativepsyco.github.io/atom.xml" rel="self"/>
+  <link href="http://creativepsyco.github.io/"/>
+  <updated>2013-04-11T02:17:46+08:00</updated>
+  <id>http://creativepsyco.github.io/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
     
@@ -14,10 +14,199 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Deploying Rails on Nginx and thin]]></title>
+    <link href="http://creativepsyco.github.io/blog/2013/04/10/deploying-rails-on-nginx-and-thin/"/>
+    <updated>2013-04-10T15:17:00+08:00</updated>
+    <id>http://creativepsyco.github.io/blog/2013/04/10/deploying-rails-on-nginx-and-thin</id>
+    <content type="html"><![CDATA[<p>I have been busy lately doing my Final Year Project which comprises of building a web based service for processing analysis jobs on patient data.</p>
+
+<p>I have developed the web service API using <a href="http://rubyonrails.org/">Rails</a> with MySQL being the backend database.</p>
+
+<p>For deployment purposes I had no idea which of the web servers to run as such I naturally googled online and found people talking about <a href="https://github.com/capistrano/capistrano">Capistrano</a>, a great way to have deployment scripts being run on the server.</p>
+
+<p>I needed something simple, I had seen the advantages of using SVN and [Nginx][ngix] as a means to deploy by SSH-ing to the server. This keeps things simple and lends us as much control as we need. So I explored.</p>
+
+<p>Here are instructions to setup a fresh copy of Ubuntu Precise Pangolin with the necessary goodies:</p>
+
+<h3>RVM</h3>
+
+<p>I highly recommend RVM to manage rubies and gems</p>
+
+<ul>
+<li>Install the pre-reqs</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config
+</span><span class='line'>curl -L https://get.rvm.io | bash -s stable
+</span><span class='line'><span class="nb">exec</span> <span class="nv">$SHELL</span>
+</span><span class='line'>rvm install 1.9.3 --default
+</span><span class='line'>ruby -v
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Don&#8217;t require rdoc and ri when installing gems:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;gem: --no-ri --no-rdoc&quot;</span> &gt; ~/.gemrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>install the latest Rails (3.2.11):</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem i bundler rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Thin</h3>
+
+<p>Thin is a ruby server much like the default WebRIck that comes along packaged with the default version of rails.</p>
+
+<ul>
+<li>Install thin and make it have some sensible defaults</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install thin
+</span><span class='line'>thin install
+</span><span class='line'>/usr/sbin/update-rc.d -f thin defaults <span class="c"># this updates the service to automatically start at login</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>Now assuming we have a rails app inisde the folder structure <code>/var/www/myapp.example.com</code> we now start the deployment process:</p></li>
+<li><p>Create a configuration</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>thin config -C /etc/thin/myapp.example.com -c /var/www/myapp.example.com --servers 3 -e development <span class="c"># or: -e production for caching, etc</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Nginx</h3>
+
+<p>Nginx is a Web Server and has better performance than Apache.</p>
+
+<ul>
+<li>Install Nginx</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install nginx
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Create a vHost. To do this, edit <code>/etc/nginx/sites-available/myapp.example.com</code></li>
+</ul>
+
+
+<p>This is a sample Nginx configuration for <code>myapp</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='nginx'><span class='line'><span class="k">upstream</span> <span class="s">myapp</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">3000</span><span class="p">;</span>
+</span><span class='line'>  <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">3001</span><span class="p">;</span>
+</span><span class='line'>  <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">3002</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">server</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span>
+</span><span class='line'>  <span class="kn">server_name</span> <span class="s">.example.com</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kn">access_log</span> <span class="s">/var/www/myapp.example.com/log/access.log</span><span class="p">;</span>
+</span><span class='line'>  <span class="kn">error_log</span>  <span class="s">/var/www/myapp.example.com/log/error.log</span><span class="p">;</span>
+</span><span class='line'>  <span class="kn">root</span>     <span class="s">/var/www/myapp.example.com</span><span class="p">;</span>
+</span><span class='line'>  <span class="kn">index</span>    <span class="s">index.html</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kn">proxy_set_header</span>  <span class="s">X-Real-IP</span>  <span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span class='line'>    <span class="kn">proxy_set_header</span>  <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span class='line'>    <span class="kn">proxy_set_header</span>  <span class="s">Host</span> <span class="nv">$http_host</span><span class="p">;</span>
+</span><span class='line'>    <span class="kn">proxy_redirect</span>  <span class="no">off</span><span class="p">;</span>
+</span><span class='line'>    <span class="kn">try_files</span> <span class="s">/system/maintenance.html</span> <span class="nv">$uri</span> <span class="nv">$uri/index.html</span> <span class="nv">$uri.html</span> <span class="s">@ruby</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kn">location</span> <span class="s">@ruby</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kn">proxy_pass</span> <span class="s">http://myapp</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And make it enabled as well:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -nfs /etc/nginx/sites-available/myapp.example.com /etc/nginx/sites-enabled/myapp.example.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Switch the app Live</h3>
+
+<ul>
+<li>Restart the different daemons</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/etc/init.d/thin restart
+</span><span class='line'>/etc/init.d/nginx reload
+</span><span class='line'>/etc/init.d/nginx restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now go visit <code>http://myapp</code> and it should show you the Rails page that you are supposed to see. Easy right?</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Singleton in Python]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/02/09/singleton-in-python/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/02/09/singleton-in-python/"/>
     <updated>2013-02-09T19:27:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/02/09/singleton-in-python</id>
+    <id>http://creativepsyco.github.io/blog/2013/02/09/singleton-in-python</id>
     <content type="html"><![CDATA[<p>In my current Final Year Project (FYP) for my undergraduate degree I needed to spawn processes and be able to store their state in the memory so that they can be started/re-started or stopped. I had previously gone about doing the same kind of operation in Java with a Singleton <code>ProcessManager</code> Class so I was pretty sure that such a pattern would exist in Python as well. Turns out, it is a <a href="http://lucumr.pocoo.org/2009/7/24/singletons-and-their-problems-in-python/">bad practice</a> to do so.</p>
 
 <p>Anyways, I could not figure out a better way to do this, so I stuck with Singletons. Moreover it got me the job done.</p>
@@ -27,7 +216,7 @@
 
 <p>Here is how the final product looks like:</p>
 
-<div><script src='https://gist.github.com/4744901.js?file='></script>
+<div><script src='https://gist.github.com/4744901.js'></script>
 <noscript><pre><code>#
 # Copyright (c) 2013 by Mohit Singh kanwal.  All Rights Reserved.
 #
@@ -87,9 +276,9 @@ mohit</p>
   
   <entry>
     <title type="html"><![CDATA[Django Dynamic Forms]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/02/02/django-dynamic-forms/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/02/02/django-dynamic-forms/"/>
     <updated>2013-02-02T20:33:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/02/02/django-dynamic-forms</id>
+    <id>http://creativepsyco.github.io/blog/2013/02/02/django-dynamic-forms</id>
     <content type="html"><![CDATA[<p>Here is an example of how to do a dynamic form in Django. I am loving this framework, it&#8217;s so simple</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -141,9 +330,9 @@ mohit</p>
   
   <entry>
     <title type="html"><![CDATA[Django and Travis]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/01/27/django-and-travis/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/01/27/django-and-travis/"/>
     <updated>2013-01-27T03:42:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/01/27/django-and-travis</id>
+    <id>http://creativepsyco.github.io/blog/2013/01/27/django-and-travis</id>
     <content type="html"><![CDATA[<p>A sample <code>.travis</code> file to allow you to run and test on the <a href="http://travis-ci.org">Travis CI</a>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -199,9 +388,9 @@ mohit</p>
   
   <entry>
     <title type="html"><![CDATA[Django Fun]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/01/24/django-fun/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/01/24/django-fun/"/>
     <updated>2013-01-24T22:29:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/01/24/django-fun</id>
+    <id>http://creativepsyco.github.io/blog/2013/01/24/django-fun</id>
     <content type="html"><![CDATA[<p>Here&#8217;s how to install python on your web server :)</p>
 
 <h3>Log in using SSH access</h3>
@@ -393,9 +582,9 @@ etc.</p>
   
   <entry>
     <title type="html"><![CDATA[Essential Mozilla Command Line]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/01/11/essential-mozilla-command-line/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/01/11/essential-mozilla-command-line/"/>
     <updated>2013-01-11T00:27:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/01/11/essential-mozilla-command-line</id>
+    <id>http://creativepsyco.github.io/blog/2013/01/11/essential-mozilla-command-line</id>
     <content type="html"><![CDATA[<p><em>This is a reference of some of the very important mozilla commands that I use in daily Terminal Life</em></p>
 
 <h3>Requirements</h3>
@@ -533,9 +722,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Creating an API with .NET MVC4]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/01/10/creating-an-api-with-net-mvc4/"/>
     <updated>2013-01-10T22:26:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4</id>
+    <id>http://creativepsyco.github.io/blog/2013/01/10/creating-an-api-with-net-mvc4</id>
     <content type="html"><![CDATA[<h2>Gist</h2>
 
 <p><em>Recently while working on a vacation assigment I had to create an API in ASP .NET MVC. This was in order to create a booking system on top of the Google Calendar Event storage. Google provides 50000 calls per day free of chrage for the API so we thought this might work. But it also required some form of authentication to prevent the API facade from being misused.</em></p>
@@ -560,9 +749,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[A home called India]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/12/11/a-home-called-india/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/12/11/a-home-called-india/"/>
     <updated>2012-12-11T22:36:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/12/11/a-home-called-india</id>
+    <id>http://creativepsyco.github.io/blog/2012/12/11/a-home-called-india</id>
     <content type="html"><![CDATA[<p><em>And now some random philosphical thoughts on what I think of India: my home</em></p>
 
 <p><em>I am an Indian from India. For most of us, the buck stop right there. I grew up just like the rest of the kids in my colony: I thought we as a Nation are huge, the best in the world. Buoyed by my sense of patriotism I even wrote a story about an army related incursion in Kashmir which got published in Champak.I knew I had a passion for writing. Nationalism aside, 10 years out in the world, I don&#8217;t think I am the same sane person I used to be back then.</em></p>
@@ -599,9 +788,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Design Patterns in Javascript: Widget Based Design]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/"/>
     <updated>2012-12-11T22:26:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design</id>
+    <id>http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design</id>
     <content type="html"><![CDATA[<p><em>One of the most important things people learn after doing/learning a new language or as-these-days a framework is to be able to apply one of the most sought after industrial practices in the form of design patterns.</em></p>
 
 <p>The current semester I had a course involving hefty use of Design Patterns. The course CS3213-Software Design revolved in using design patterns and applying them to the world of software in extreme detail, which I never in my dreams would have imagined.</p>
@@ -628,18 +817,18 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[A Web Service for Multi-Factor Authentication]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/12/01/a-web-service-for-multi-factor-authentication/"/>
     <updated>2012-12-01T21:56:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/12/01/a-web-service-for-multi-factor-authentication</id>
+    <id>http://creativepsyco.github.io/blog/2012/12/01/a-web-service-for-multi-factor-authentication</id>
     <content type="html"><![CDATA[<p><em>One of the projects done by me this semester was making Multi-Factor Authentication available for use by other websites. This required hosting our MFA web service over the internet.</em></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[An App called tidicity - Part 1]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/11/02/an-app-called-tidicity/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/11/02/an-app-called-tidicity/"/>
     <updated>2012-11-02T01:49:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/11/02/an-app-called-tidicity</id>
+    <id>http://creativepsyco.github.io/blog/2012/11/02/an-app-called-tidicity</id>
     <content type="html"><![CDATA[<p>Do you think there is a concept of smart cities?</p>
 
 <p>Well there is. Sort of.</p>
@@ -660,9 +849,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[New Technologies Galore]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/11/02/new-technologies-galore/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/11/02/new-technologies-galore/"/>
     <updated>2012-11-02T01:12:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/11/02/new-technologies-galore</id>
+    <id>http://creativepsyco.github.io/blog/2012/11/02/new-technologies-galore</id>
     <content type="html"><![CDATA[<p><em>Most of the stuff is still under production, more details later</em></p>
 
 <p>Don&#8217;t know why but these days I am hooked to Javascript. Perhaps that&#8217;s coz I write way too much Javascript these days or maybe the world is really moving to the client side of things. Now I don&#8217;t want to go into the details of the holy war of server side vs client side of things. However, I do find that client side stuff is very exciting not to mention that completely open.</p>
@@ -742,9 +931,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Solving Cross Origin Resource Sharing policies Sinatra and BackboneJS]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs/"/>
     <updated>2012-10-22T22:57:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/22/solving-cross-origin-resource-sharing-policies-sinatra-and-backbonejs</id>
     <content type="html"><![CDATA[<p>Admit it. There are so many times you wish that the localhost-ed version of the application that you are developing in BacboneJS just works. But it doesn&#8217;t. And there is only one reason why it doesn&#8217;t work.</p>
 
 <h2>Cross Origin Resource Sharing</h2>
@@ -768,9 +957,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Node JS Script to run a web server for Backbone etc]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc/"/>
     <updated>2012-10-22T00:18:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/22/node-js-script-to-run-a-web-server-for-backbone-etc</id>
     <content type="html"><![CDATA[<h2>The Problem</h2>
 
 <p>Sometimes we find ourselves wanting to be able to host a webserver to test out some HTML or javascript functionality. For example when Cross Origin Resource Policy (CORS) does not allow running of scripts from outside the domain of the webserver.</p>
@@ -807,9 +996,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Page Control Javascript]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/21/page-control-javascript/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/21/page-control-javascript/"/>
     <updated>2012-10-21T23:59:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/21/page-control-javascript</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/21/page-control-javascript</id>
     <content type="html"><![CDATA[<h2>The Problem</h2>
 
 <p>Sometimes having different pages of content causes us to think about loading them in a page like fashion. Thus there needs to be a <em>mediator</em> that can take care of the loading based on a few configuration variables.</p>
@@ -828,9 +1017,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Doing a Wizard Like Flow in Backbone.js and Jquery Mobile]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile/"/>
     <updated>2012-10-21T23:26:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/21/doing-a-wizard-like-flow-in-backbone-dot-js-and-jquery-mobile</id>
     <content type="html"><![CDATA[<p>One of the things that new app developers do especially mobile ones, is that they give a step like flow to their users to enter data in a much more streamlined process by breaking it down into a number of steps and then load each one at a different time.</p>
 
 <!--more-->
@@ -845,18 +1034,18 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[CS3235]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/12/cs3235/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/12/cs3235/"/>
     <updated>2012-10-12T11:07:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/12/cs3235</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/12/cs3235</id>
     <content type="html"><![CDATA[<p>Hi -</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[hello world]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/12/hello-world/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/12/hello-world/"/>
     <updated>2012-10-12T08:11:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/12/hello-world</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/12/hello-world</id>
     <content type="html"><![CDATA[<p><em>Every post starts with a Hello World. Every code you write starts with Hello World.</em></p>
 
 <p><em>Then perhaps this should also.</em></p>
@@ -872,9 +1061,9 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   
   <entry>
     <title type="html"><![CDATA[Zombie Ninjas Attack: A survivor's retrospective]]></title>
-    <link href="http://creativepsyco.github.com/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective/"/>
+    <link href="http://creativepsyco.github.io/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective/"/>
     <updated>2012-10-12T07:46:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective</id>
+    <id>http://creativepsyco.github.io/blog/2012/10/12/zombie-ninjas-attack-a-survivors-retrospective</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ASP | creativepsyco's Blog]]></title>
-  <link href="http://creativepsyco.github.com/blog/categories/asp/atom.xml" rel="self"/>
-  <link href="http://creativepsyco.github.com/"/>
-  <updated>2013-02-09T19:51:15+08:00</updated>
-  <id>http://creativepsyco.github.com/</id>
+  <link href="http://creativepsyco.github.io/blog/categories/asp/atom.xml" rel="self"/>
+  <link href="http://creativepsyco.github.io/"/>
+  <updated>2013-04-11T02:17:46+08:00</updated>
+  <id>http://creativepsyco.github.io/</id>
   <author>
     <name><![CDATA[Mohit Kanwal]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Creating an API with .NET MVC4]]></title>
-    <link href="http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4/"/>
+    <link href="http://creativepsyco.github.io/blog/2013/01/10/creating-an-api-with-net-mvc4/"/>
     <updated>2013-01-10T22:26:00+08:00</updated>
-    <id>http://creativepsyco.github.com/blog/2013/01/10/creating-an-api-with-net-mvc4</id>
+    <id>http://creativepsyco.github.io/blog/2013/01/10/creating-an-api-with-net-mvc4</id>
     <content type="html"><![CDATA[<h2>Gist</h2>
 
 <p><em>Recently while working on a vacation assigment I had to create an API in ASP .NET MVC. This was in order to create a booking system on top of the Google Calendar Event storage. Google provides 50000 calls per day free of chrage for the API so we thought this might work. But it also required some form of authentication to prevent the API facade from being misused.</em></p>

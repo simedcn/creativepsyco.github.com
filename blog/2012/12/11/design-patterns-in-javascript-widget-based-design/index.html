@@ -18,14 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/">
+  <link rel="canonical" href="http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="creativepsyco's Blog" type="application/atom+xml">
-  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -69,7 +69,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:creativepsyco.github.com" />
+    <input type="hidden" name="q" value="site:creativepsyco.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -88,9 +88,7 @@
   
   <header>
     
-      
-        <h1 class="entry-title">Design Patterns in Javascript: Widget Based Design</h1>
-      
+      <h1 class="entry-title">Design Patterns in Javascript: Widget Based Design</h1>
     
     
       <p class="meta">
@@ -172,7 +170,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -185,10 +183,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2012/12/01/a-web-service-for-multi-factor-authentication/" title="Previous Post: A Web Service for Multi-Factor Authentication">&laquo; A Web Service for Multi-Factor Authentication</a>
+        <a class="basic-alignment left" href="/blog/2012/12/01/a-web-service-for-multi-factor-authentication/" title="Previous Post: A Web Service for Multi-Factor Authentication">&laquo; A Web Service for Multi-Factor Authentication</a>
       
       
-        <a class="basic-alignment right articlenav" href="/blog/2012/12/11/a-home-called-india/" title="Next Post: A home called India">A home called India &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2012/12/11/a-home-called-india/" title="Next Post: A home called India">A home called India &raquo;</a>
       
     </p>
   </footer>
@@ -209,6 +207,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/10/deploying-rails-on-nginx-and-thin/">Deploying Rails on Nginx and thin</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/09/singleton-in-python/">Singleton in Python</a>
       </li>
     
@@ -224,10 +226,6 @@
         <a href="/blog/2013/01/24/django-fun/">Django Fun</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/01/11/essential-mozilla-command-line/">Essential Mozilla Command Line</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -240,7 +238,7 @@
   <a href="https://github.com/creativepsyco">@creativepsyco</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -258,23 +256,6 @@
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("mohitkanwal", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/mohitkanwal" class="twitter-follow-button" data-show-count="false">Follow @mohitkanwal</a>
-  
 </section>
 
 
@@ -300,8 +281,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/';
-        var disqus_url = 'http://creativepsyco.github.com/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/';
+        var disqus_identifier = 'http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/';
+        var disqus_url = 'http://creativepsyco.github.io/blog/2012/12/11/design-patterns-in-javascript-widget-based-design/';
         var disqus_script = 'embed.js';
       
     (function () {
@@ -317,7 +298,7 @@
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
