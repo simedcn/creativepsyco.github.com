@@ -9,19 +9,7 @@
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="Making use of shared preferences for storing information 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13 public boolean getStoredLoginState() { prefs = &hellip;">
+  <meta name="description" content="Setting up a unobstrusive development environment has its advantages. If you are one of those people who probably spend about 14 hours a day sitting &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,6 +84,161 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/07/04/finding-a-perfect-dev-environment/">Finding a Perfect Dev Environment</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-04T13:51:00+08:00" pubdate data-updated="true">Jul 4<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/07/04/finding-a-perfect-dev-environment/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Setting up a unobstrusive development environment has its advantages. If you are one of those people who probably spend about 14 hours a day sitting in front of a monitor doing what-not, from testing to deployment and development, then read on. Otherwise you can spend some time reading an <a href="http://www.ibm.com/developerworks/rational/library/define-scope-development-environment/">IBM</a> justification of how and why a solid dev environment pays off. This post is about setting up a solid development environment on Ubuntu Linux 12.04 and contains bits and pieces of information of how a lot of things can be automated.</p>
+
+<p>I assume some familiarity with Linux command-line for the below.</p>
+
+<h3>Prepare your home directory</h3>
+
+<p>This would be where all your patches come in handy. Spice it with some names that you can remember in the long-run. Keep a separate directory for SDKs, sources and the common shared libraries that you use.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir /home/creativepsyco
+</span><span class='line'><span class="nb">cd</span> /home
+</span><span class='line'>chown msk creativepsyco
+</span><span class='line'>chgrp msk creativepsyco
+</span><span class='line'><span class="nb">cd</span> /home/creativepsyco
+</span><span class='line'>mkdir android
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install ZSH and Oh-My-ZSH</h3>
+
+<p><a href="http://www.zsh.org/">ZSH</a> is a fanstastic tool and better than your average joe-bash-shell. It has advanced modules for autocompletion and lots of plugins which, after you use, trust me, are going to be your goto tools for specific tasks.</p>
+
+<p>You can install zsh by using these commands</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also, install <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> which is another cake layer on top of zsh. It includes tons of automatic zsh scripts and plugins to aid you in development.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Set ZSH as your default shell</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chsh -s /bin/zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>A tip: To get more out of your oh-my-zsh installation you need to enable some or a lot of the plugins in your <code>~/.zshrc</code> file which replaces your <code>~/.bashrc</code> file</p></blockquote>
+
+<h3>Install Git</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install git-core
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Make yourself feel at home with solarized</h3>
+
+<p>I absolutely love the <a href="http://ethanschoonover.com/solarized">Solarized dark theme</a>. I use it everywhere: At work, in my MacBook Pro (running from 2010 without a scratch so far [touch wood]). Here&#8217;s how it looks like:</p>
+
+<p><img src="http://d.pr/i/xmRI.jpg" alt="Solarized Dark Image" /></p>
+
+<p>Isn&#8217;t it absolutely delicious. Unfortunately some of the ways to install on ubuntu terminal or gnome-terminal have been rather futile. Here&#8217;s one that works so far:</p>
+
+<ol>
+<li>Go to your home directory</li>
+<li>Blindly follow the commands below</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>gnome-terminal-colors-solarized
+</span><span class='line'><span class="nv">$ </span>./solarize
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>And Voila experiment between the two themes</li>
+</ol>
+
+
+<h3>Start installing Android Libraries</h3>
+
+<p>Now that the eyes are set, start installing the necessary SDKs from Android. You can get the SDK from Android&#8217;s site. Just need to unzip it and place it in the home folder. Eventually your folder configuration should look something like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>msk@ubuntu:/home/creativepsyco/android<span class="nv">$ </span>ls
+</span><span class='line'>adt-bundle-linux            ----- ADT bundle
+</span><span class='line'>idea-IC                     ----- IDE IntelliJ stack <span class="o">(</span>Or Eclipse<span class="o">)</span>
+</span><span class='line'>shared_android_lib          ----- Shared library
+</span><span class='line'>project_android             ----- Project Git directory
+</span><span class='line'>anotherapp_android          ----- Project Git directory
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>A Tip: If you are using a 64-bit OS then to make your life easy, you should install these compatible libs to help you: <code>sudo apt-get install ia32-libs</code></p></blockquote>
+
+<h3>SQLite</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install sqlite3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ending Note</h3>
+
+<p>Now you have everything for Android development and please follow <a href="http://developer.android.com/training/index.html">Google&#8217;s tutorials</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -972,177 +1115,6 @@ etc.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/01/11/essential-mozilla-command-line/">Essential Mozilla Command Line</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-11T00:27:00+08:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/01/11/essential-mozilla-command-line/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>This is a reference of some of the very important mozilla commands that I use in daily Terminal Life</em></p>
-
-<h3>Requirements</h3>
-
-<p>Set up Hg, Autoconf using Brew. Look up the instructions at the official website.</p>
-
-<h3>Setting up of Source Directory</h3>
-
-<p>Mozilla Code can be checked out from http://hg.mozilla.org. To set up a Thunderbird and Calendar clone on your local machine checkout the source code as</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bash$ hg clone http://hg.mozilla.org/comm-central</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will create a <code>comm-central</code> directory in your local machine
-Now <code>comm-central</code> depends on a number of submodules which can be fetched by the following commands</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash<span class="nv">$ </span><span class="nb">cd </span>comm-central
-</span><span class='line'>bash<span class="nv">$ </span>python client.py checkout
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will fetch the submodules. It will take a while</p>
-
-<h3>Compiling Code</h3>
-
-<p>In order to build the calendar application create a <code>.mozconfig</code> file within <code>comm-central</code> and insert the following code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mk_add_options <span class="nv">MOZ_OBJDIR</span><span class="o">=</span>@TOPSRCDIR@/obj-TB
-</span><span class='line'>mk_add_options <span class="nv">AUTOCONF</span><span class="o">=</span>/usr/local/Cellar/autoconf213/2.13/bin/autoconf213
-</span><span class='line'>ac_add_options --enable-calendar
-</span><span class='line'>
-</span><span class='line'><span class="c"># Turn off compiler optimization. This will make applications run slower,</span>
-</span><span class='line'><span class="c"># will allow you to debug the applications under a debugger, like GDB.</span>
-</span><span class='line'>ac_add_options --disable-optimize
-</span><span class='line'>ac_add_options --disable-jemalloc
-</span><span class='line'>
-</span><span class='line'><span class="c"># -s makes builds quieter by default</span>
-</span><span class='line'><span class="c"># -j4 allows 4 tasks to run in parallel. Set the number to be the amount of</span>
-</span><span class='line'><span class="c"># cores in your machine. 4 is a good number.</span>
-</span><span class='line'>
-</span><span class='line'>mk_add_options <span class="nv">MOZ_MAKE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-j4 -s --no-print-directory&quot;</span>
-</span><span class='line'>mk_add_options <span class="nv">JS_READLINE</span><span class="o">=</span>1
-</span><span class='line'><span class="nb">export </span><span class="nv">JS_READLINE</span><span class="o">=</span>1
-</span><span class='line'>ac_add_options --disable-tests
-</span><span class='line'>ac_add_options --disable-installer
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now fire away the compiler using the following command:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash<span class="nv">$ </span>make -f client.mk
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will take quite a lot of time depending upon your machine&#8217;s strength of course.</p>
-
-<h3>Applying a patch</h3>
-
-<p>From time to time, you might need to apply a patch from someone else, or maybe your own patch. This is quite easy, but note that if you plan on applying the patch, making some changes and then want to create a patch that doesn&#8217;t contain the patch you originally applied, it might be quite a bit harder.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> <span class="nv">$MOZILLA</span>/calendar
-</span><span class='line'><span class="c"># --dry-run tests the patching process to ensure that the patch will go</span>
-</span><span class='line'><span class="c"># ahead cleanly. Be sure to run --dry-run at least once before running</span>
-</span><span class='line'><span class="c"># the actual patching process.</span>
-</span><span class='line'>patch -p1 -i ~/my_first_bug.diff --dry-run
-</span><span class='line'><span class="c"># Now check if the patch applies cleanly, or you are willing to fix the </span>
-</span><span class='line'><span class="c"># places it went wrong. When you are confident, you can call:</span>
-</span><span class='line'>patch -p0 -i ~/my_first_bug.diff
-</span><span class='line'>
-</span><span class='line'><span class="c"># If the file to patch was not found, take a look at the patch headers. For</span>
-</span><span class='line'><span class="c"># example, if the header contains &quot;+++ themes/winstripe/calendar-views.css&quot;,</span>
-</span><span class='line'><span class="c"># then you need to go into the base directory and call again. If the header</span>
-</span><span class='line'><span class="c"># contains &quot;+++ mozilla/calendar/base/Makefile.in&quot;, you can use -p2 instead to</span>
-</span><span class='line'><span class="c"># strip the &quot;mozilla/calendar&quot; part.</span>
-</span><span class='line'>patch -p2 -i ~/my_first_bug.diff
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Creating a patch</h3>
-
-<p>Simply create a diff and store it somewhere</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash<span class="nv">$ </span>hg diff &gt; ~/my_first_patch.diff
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Reverting a patch</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash<span class="nv">$ </span>hg revert .
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>For more information refer to <a href="https://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions">Mozilla Documentation on Build</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1158,6 +1130,10 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/04/finding-a-perfect-dev-environment/">Finding a perfect dev environment</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/24/android-shortcuts-and-must-have-gists/">Android Shortcuts and Must-have Gists</a>
       </li>
     
@@ -1171,10 +1147,6 @@ Now <code>comm-central</code> depends on a number of submodules which can be fet
     
       <li class="post">
         <a href="/blog/2013/04/23/android-development-within-a-virtual-machine/">Android Development within a Virtual Machine</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/10/deploying-rails-on-nginx-and-thin/">Deploying Rails on Nginx and thin</a>
       </li>
     
   </ul>

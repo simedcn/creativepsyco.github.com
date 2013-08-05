@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Android Development within a Virtual Machine - creativepsyco's Blog</title>
+  <title>Finding a perfect dev environment - creativepsyco's Blog</title>
   <meta name="author" content="Mohit Kanwal">
 
   
-  <meta name="description" content="Sometimes it can be really fustrating to work within a Virtual Machine (VM) which might not have support for a number of removable devices. I am &hellip;">
+  <meta name="description" content="Setting up a unobstrusive development environment has its advantages. If you are one of those people who probably spend about 14 hours a day sitting &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://creativepsyco.github.io/blog/2013/04/23/android-development-within-a-virtual-machine/">
+  <link rel="canonical" href="http://creativepsyco.github.io/blog/2013/07/04/finding-a-perfect-dev-environment/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -88,7 +88,7 @@
   <header>
     
       
-        <h1 class="entry-title">Android Development Within a Virtual Machine</h1>
+        <h1 class="entry-title">Finding a Perfect Dev Environment</h1>
       
     
     
@@ -105,7 +105,7 @@
   
 
 
-<time datetime="2013-04-23T17:30:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2013</time>
+<time datetime="2013-07-04T13:51:00+08:00" pubdate data-updated="true">Jul 4<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -114,117 +114,122 @@
   </header>
 
 
-<div class="entry-content"><p>Sometimes it can be <a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=1027964">really fustrating</a> to work within a Virtual Machine (VM) which might not have support for a number of removable devices. I am talking of VMWare workstation which is a big part of the problem.</p>
+<div class="entry-content"><p>Setting up a unobstrusive development environment has its advantages. If you are one of those people who probably spend about 14 hours a day sitting in front of a monitor doing what-not, from testing to deployment and development, then read on. Otherwise you can spend some time reading an <a href="http://www.ibm.com/developerworks/rational/library/define-scope-development-environment/">IBM</a> justification of how and why a solid dev environment pays off. This post is about setting up a solid development environment on Ubuntu Linux 12.04 and contains bits and pieces of information of how a lot of things can be automated.</p>
 
-<p>Below I describe a working way to install a reliable working environment in VMWare Workstation 9.x running Ubuntu 12.10</p>
+<p>I assume some familiarity with Linux command-line for the below.</p>
 
-<!--more-->
+<h3>Prepare your home directory</h3>
+
+<p>This would be where all your patches come in handy. Spice it with some names that you can remember in the long-run. Keep a separate directory for SDKs, sources and the common shared libraries that you use.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir /home/creativepsyco
+</span><span class='line'><span class="nb">cd</span> /home
+</span><span class='line'>chown msk creativepsyco
+</span><span class='line'>chgrp msk creativepsyco
+</span><span class='line'><span class="nb">cd</span> /home/creativepsyco
+</span><span class='line'>mkdir android
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>For the instructions below I am installing everything under: <code>~/android</code></p>
+<h3>Install ZSH and Oh-My-ZSH</h3>
 
-<h3>Pre-Requisite</h3>
+<p><a href="http://www.zsh.org/">ZSH</a> is a fanstastic tool and better than your average joe-bash-shell. It has advanced modules for autocompletion and lots of plugins which, after you use, trust me, are going to be your goto tools for specific tasks.</p>
 
-<ul>
-<li>Install Sun (Oracle) JDK for IntelliJ Idea</li>
-</ul>
+<p>You can install zsh by using these commands</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get install zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also, install <a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a> which is another cake layer on top of zsh. It includes tons of automatic zsh scripts and plugins to aid you in development.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Set ZSH as your default shell</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chsh -s /bin/zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>A tip: To get more out of your oh-my-zsh installation you need to enable some or a lot of the plugins in your <code>~/.zshrc</code> file which replaces your <code>~/.bashrc</code> file</p></blockquote>
+
+<h3>Install Git</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install git-core
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Make yourself feel at home with solarized</h3>
+
+<p>I absolutely love the <a href="http://ethanschoonover.com/solarized">Solarized dark theme</a>. I use it everywhere: At work, in my MacBook Pro (running from 2010 without a scratch so far [touch wood]). Here&#8217;s how it looks like:</p>
+
+<p><img src="http://d.pr/i/xmRI.jpg" alt="Solarized Dark Image" /></p>
+
+<p>Isn&#8217;t it absolutely delicious. Unfortunately some of the ways to install on ubuntu terminal or gnome-terminal have been rather futile. Here&#8217;s one that works so far:</p>
+
+<ol>
+<li>Go to your home directory</li>
+<li>Blindly follow the commands below</li>
+</ol>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo add-apt-repository ppa:webupd8team/java
-</span><span class='line'>sudo apt-get update
-</span><span class='line'>sudo apt-get install oracle-java7-installer
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>gnome-terminal-colors-solarized
+</span><span class='line'><span class="nv">$ </span>./solarize
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Install Intelli-J</h3>
-
-<ul>
-<li>Donwload Intell-J from <a href="http://www.jetbrains.com/idea/download/index.html">this</a> and extract to a directory in your computer</li>
-<li>Unpack the directory</li>
-<li>Add the Idea bin folder to your PATH</li>
-</ul>
+<ol>
+<li>And Voila experiment between the two themes</li>
+</ol>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/lib/&lt;YOUR_IDEA_FOLDER&gt;/bin
-</span></code></pre></td></tr></table></div></figure>
+<h3>Start installing Android Libraries</h3>
 
-
-<h3>Install Android SDK Bundle</h3>
-
-<ul>
-<li>Download the ADT Bundle from <a href="http://developer.android.com/sdk/index.html">this</a></li>
-<li>Extract it and move to a location in your</li>
-<li>Add these lines to your <code>.bashrc</code> file</li>
-</ul>
-
+<p>Now that the eyes are set, start installing the necessary SDKs from Android. You can get the SDK from Android&#8217;s site. Just need to unzip it and place it in the home folder. Eventually your folder configuration should look something like this:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span>:~/android/android-sdk-linux/tools
-</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span>:~/android/android-sdk-linux/platform-tools
-</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span>:~/android/idea-IC/bin
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>msk@ubuntu:/home/creativepsyco/android<span class="nv">$ </span>ls
+</span><span class='line'>adt-bundle-linux            ----- ADT bundle
+</span><span class='line'>idea-IC                     ----- IDE IntelliJ stack <span class="o">(</span>Or Eclipse<span class="o">)</span>
+</span><span class='line'>shared_android_lib          ----- Shared library
+</span><span class='line'>project_android             ----- Project Git directory
+</span><span class='line'>anotherapp_android          ----- Project Git directory
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>Source your <code>.bashrc</code></li>
-</ul>
+<blockquote><p>A Tip: If you are using a 64-bit OS then to make your life easy, you should install these compatible libs to help you: <code>sudo apt-get install ia32-libs</code></p></blockquote>
 
+<h3>SQLite</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.bashrc
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install sqlite3
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Test a Device</h3>
+<h3>Ending Note</h3>
 
-<p>Now go ahead and test your shiny new Android Development device by connecting it to the USB port on your machine.</p>
-
-<ul>
-<li><p>In VMWare you need to make sure that it connects to the Android Device. You can do this, by navigating to <strong>VM > Removable Devices > Samsung Android Device > Connect (Disconnect fro host)</strong>. This will disconnect it from your host machine (Windows 7 in my case) and connect it to the VMWare instance.</p></li>
-<li><p>In VMWare Ubuntu:</p></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>adb devices <span class="c">#lists all the devices attached to the computer</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>If the above command displays nothing, do this:</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>adb <span class="nb">wait</span>-for-device
-</span><span class='line'>adb start-server
-</span><span class='line'>adb devices <span class="c"># display connected devices</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will make it wait for the device to link up</p>
-
-<h3>Android Device Issues with VMWare</h3>
-
-<p>Some of the issues that I encountered while connecting my Samsung Galaxy S-III to VMWare on a Windows 7 Enterprise workstation are as follows:</p>
-
-<ul>
-<li><p>If you have an error message that says that the device cannot be plugged out, then make sure no process is accessing the device. This includes the Kies software from Samsung. Use the Task Manager to kill them</p></li>
-<li><p>If you have an error message that says there is a driver error then perhaps you have a USB 3.0 issue. As of now, VMWare does not support Intel-based USB 3.0 controllers. So you need to suck it up for the moment and find a USB 2.0 port on your machine. Otherwise you need to look up another <a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=1027964">manual</a></p></li>
-</ul>
-
-
-<h3>Conclusion</h3>
-
-<p>Hopefully by the end of this guide, there is a working android development setup on your machine.</p>
+<p>Now you have everything for Android development and please follow <a href="http://developer.android.com/training/index.html">Google&#8217;s tutorials</a>.</p>
 </div>
 
 
@@ -247,12 +252,12 @@
   
 
 
-<time datetime="2013-04-23T17:30:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2013</time>
+<time datetime="2013-07-04T13:51:00+08:00" pubdate data-updated="true">Jul 4<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/vm/'>VM</a>
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -261,7 +266,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.io/blog/2013/04/23/android-development-within-a-virtual-machine/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.io/blog/2013/04/23/android-development-within-a-virtual-machine/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://creativepsyco.github.io/blog/2013/07/04/finding-a-perfect-dev-environment/" data-via="mohitkanwal" data-counturl="http://creativepsyco.github.io/blog/2013/07/04/finding-a-perfect-dev-environment/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -274,10 +279,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2013/04/10/deploying-rails-on-nginx-and-thin/" title="Previous Post: Deploying Rails on Nginx and thin">&laquo; Deploying Rails on Nginx and thin</a>
+        <a class="basic-alignment left articlenav" href="/blog/2013/06/24/android-shortcuts-and-must-have-gists/" title="Previous Post: Android Shortcuts and Must-have Gists">&laquo; Android Shortcuts and Must-have Gists</a>
       
-      
-        <a class="basic-alignment right articlenav" href="/blog/2013/05/21/making-sense-of-vacations-geek-style/" title="Next Post: Making sense of vacations - Geek Style">Making sense of vacations - Geek Style &raquo;</a>
       
     </p>
   </footer>
@@ -372,8 +375,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://creativepsyco.github.io/blog/2013/04/23/android-development-within-a-virtual-machine/';
-        var disqus_url = 'http://creativepsyco.github.io/blog/2013/04/23/android-development-within-a-virtual-machine/';
+        var disqus_identifier = 'http://creativepsyco.github.io/blog/2013/07/04/finding-a-perfect-dev-environment/';
+        var disqus_url = 'http://creativepsyco.github.io/blog/2013/07/04/finding-a-perfect-dev-environment/';
         var disqus_script = 'embed.js';
       
     (function () {
